@@ -4,7 +4,7 @@ import (
 	"context"
 	"net"
 
-	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/v1"
+	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/v1/highscore"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"

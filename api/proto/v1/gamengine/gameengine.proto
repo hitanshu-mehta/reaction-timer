@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package gameengine.v1;
+
+option go_package = "gameengine";
+
+service gameengin{
+    rpc SetSize (SetSizeRequest) returns (SetSizeResponse);
+    rpc GetSize (GetSizeRequest) returns (GetSizeResponse);
+}
+
+message SetSizeRequest{
+    double size = 1;
+}
+
+message SetSizeResponse{
+    bool set = 1;
+}
+
+message GetSizeRequest{
+
+}
+
+message GetSizeResponse{
+    double size = 1;
+}
