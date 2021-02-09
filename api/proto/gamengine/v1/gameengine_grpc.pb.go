@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GameenginClient interface {
-	SetSize(ctx context.Context, in *SetSizeRequest, opts ...grpc.CallOption) (*SetSizeResponse, error)
+	SetScore(ctx context.Context, in *SetScoreRequest, opts ...grpc.CallOption) (*SetScoreResponse, error)
 	GetSize(ctx context.Context, in *GetSizeRequest, opts ...grpc.CallOption) (*GetSizeResponse, error)
 }
 
@@ -30,9 +30,9 @@ func NewGameenginClient(cc grpc.ClientConnInterface) GameenginClient {
 	return &gameenginClient{cc}
 }
 
-func (c *gameenginClient) SetSize(ctx context.Context, in *SetSizeRequest, opts ...grpc.CallOption) (*SetSizeResponse, error) {
-	out := new(SetSizeResponse)
-	err := c.cc.Invoke(ctx, "/gameengine.v1.gameengin/SetSize", in, out, opts...)
+func (c *gameenginClient) SetScore(ctx context.Context, in *SetScoreRequest, opts ...grpc.CallOption) (*SetScoreResponse, error) {
+	out := new(SetScoreResponse)
+	err := c.cc.Invoke(ctx, "/gameengine.v1.gameengin/SetScore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (c *gameenginClient) GetSize(ctx context.Context, in *GetSizeRequest, opts 
 // All implementations must embed UnimplementedGameenginServer
 // for forward compatibility
 type GameenginServer interface {
-	SetSize(context.Context, *SetSizeRequest) (*SetSizeResponse, error)
+	SetScore(context.Context, *SetScoreRequest) (*SetScoreResponse, error)
 	GetSize(context.Context, *GetSizeRequest) (*GetSizeResponse, error)
 	mustEmbedUnimplementedGameenginServer()
 }
@@ -61,8 +61,8 @@ type GameenginServer interface {
 type UnimplementedGameenginServer struct {
 }
 
-func (UnimplementedGameenginServer) SetSize(context.Context, *SetSizeRequest) (*SetSizeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetSize not implemented")
+func (UnimplementedGameenginServer) SetScore(context.Context, *SetScoreRequest) (*SetScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetScore not implemented")
 }
 func (UnimplementedGameenginServer) GetSize(context.Context, *GetSizeRequest) (*GetSizeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSize not implemented")
@@ -80,20 +80,20 @@ func RegisterGameenginServer(s grpc.ServiceRegistrar, srv GameenginServer) {
 	s.RegisterService(&Gameengin_ServiceDesc, srv)
 }
 
-func _Gameengin_SetSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetSizeRequest)
+func _Gameengin_SetScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetScoreRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GameenginServer).SetSize(ctx, in)
+		return srv.(GameenginServer).SetScore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gameengine.v1.gameengin/SetSize",
+		FullMethod: "/gameengine.v1.gameengin/SetScore",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameenginServer).SetSize(ctx, req.(*SetSizeRequest))
+		return srv.(GameenginServer).SetScore(ctx, req.(*SetScoreRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -124,8 +124,8 @@ var Gameengin_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GameenginServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SetSize",
-			Handler:    _Gameengin_SetSize_Handler,
+			MethodName: "SetScore",
+			Handler:    _Gameengin_SetScore_Handler,
 		},
 		{
 			MethodName: "GetSize",
@@ -133,5 +133,5 @@ var Gameengin_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/proto/v1/gamengine/gameengine.proto",
+	Metadata: "api/proto/gamengine/v1/gameengine.proto",
 }

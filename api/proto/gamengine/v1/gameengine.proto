@@ -5,15 +5,15 @@ package gameengine.v1;
 option go_package = "gameengine";
 
 service gameengin{
-    rpc SetSize (SetSizeRequest) returns (SetSizeResponse);
+    rpc SetScore (SetScoreRequest) returns (SetScoreResponse);
     rpc GetSize (GetSizeRequest) returns (GetSizeResponse);
 }
 
-message SetSizeRequest{
+message SetScoreRequest{
     double size = 1;
 }
 
-message SetSizeResponse{
+message SetScoreResponse{
     bool set = 1;
 }
 
