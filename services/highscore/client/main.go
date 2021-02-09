@@ -5,6 +5,7 @@ import (
 	"flag"
 	"time"
 
+	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/v1"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 )
@@ -25,7 +26,18 @@ func main() {
 	c := pb.NewGameClient(conn)
 
 	if c == nil {
-		log.Info("Client is nil")
+		log.Info().Msg("Client is nil")
+	}
+
+	r, err := c.GetHighScore(timeoutCtx, &pb.GetHighScoreRequest{})
+	if err != nil {
+		log.Fatal().Err(err).Str("address", *addressPtr).Msg("failed to get response")
+	}
+
+	if r != nil {
+		log.Info().Interface("highscore", r.GetHighscore()).Msg("highscore from highscore microservice")
+	} else {
+		log.Error().Msg("couldn't get highscore")
 	}
 
 }

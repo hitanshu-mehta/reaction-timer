@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
-	"log"
 
-	grpcSetup "github.com/hitanshu-mehta/reaction-timer/services/highscore/server/"
+	"github.com/rs/zerolog/log"
+
+	grpcSetup "github.com/hitanshu-mehta/reaction-timer/services/highscore/server"
 )
 
 func main() {
@@ -13,8 +14,8 @@ func main() {
 
 	s := grpcSetup.NewServer(*addressPtr)
 
-	err := s.ListenAndServe(*addressPtr)
+	err := s.ListenAndServe()
 	if err != nil {
-		log.Fatal().Msg("Failed to start grpc server of highscore microservice")
+		log.Fatal().Msg("failed to start grpc server of highscore microservice")
 	}
 }
