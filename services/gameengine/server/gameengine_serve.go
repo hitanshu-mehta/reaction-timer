@@ -19,7 +19,7 @@ type GameenginServer struct {
 }
 
 // NewServer creates new instance of the server
-func NewServer(address string) *GameenginServer{
+func NewServer(address string) *GameenginServer {
 	return &GameenginServer{
 		address: address,
 	}
@@ -52,15 +52,15 @@ func (g *GameenginServer) ListenAndServe() error {
 
 	serverOpts := []grpc.ServerOption{}
 
-	g.srv := grpc.NewServer(serverOpts...)
+	g.srv = grpc.NewServer(serverOpts...)
 
-	pb.RegisterGameenginServer(g.srv,g)
+	pb.RegisterGameenginServer(g.srv, g)
 
 	log.Info().Str("address", g.address).Msg("starting gRPC server for gameengine microservice")
 
-	err := g.srv.Serve(lis)
-	if err != nil{
-		return errors.Wrap(err,"failed to start gRPC server for gameengine microservice")
+	err = g.srv.Serve(lis)
+	if err != nil {
+		return errors.Wrap(err, "failed to start gRPC server for gameengine microservice")
 	}
 
 	return nil
