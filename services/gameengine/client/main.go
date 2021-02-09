@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"flag"
+	"os"
 	"time"
 
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
 	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/gameengine/v1"
@@ -12,6 +14,9 @@ import (
 )
 
 func main() {
+
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+
 	var addressPtr = flag.String("address", "localhost:50061", "address to connect")
 
 	conn, err := grpc.Dial(*addressPtr, grpc.WithInsecure())

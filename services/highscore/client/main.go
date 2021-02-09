@@ -3,14 +3,17 @@ package main
 import (
 	"context"
 	"flag"
+	"os"
 	"time"
 
 	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/highscore/v1"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 )
 
 func main() {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
 	var addressPtr = flag.String("address", "localhost:50051", "address to connect")
 	flag.Parse()

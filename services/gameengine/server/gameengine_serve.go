@@ -27,7 +27,7 @@ func NewServer(address string) *GameenginServer {
 
 // SetScore saves the last score
 func (g *GameenginServer) SetScore(ctx context.Context, input *pb.SetScoreRequest) (*pb.SetScoreResponse, error) {
-	log.Info().Msg("GetSize in gameengine called")
+	log.Info().Msg("SetScore in gameengine called")
 	set := logic.SetScore(input.Score)
 	return &pb.SetScoreResponse{
 		Set: set,
