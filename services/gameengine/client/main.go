@@ -22,13 +22,13 @@ func main() {
 	timeoutCtx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	c := pb.NewGameenginClient(conn)
+	c := pb.NewGameengineClient(conn)
 
 	if c == nil {
 		log.Info().Msg("Client is nil")
 	}
 
-	r, err := c.GetSize(timeoutCtx, &pb.GetScoreRequest{})
+	r, err := c.GetSize(timeoutCtx, &pb.GetSizeRequest{})
 	if err != nil {
 		log.Fatal().Err(err).Str("address", *addressPtr).Msg("failed to get response")
 	}

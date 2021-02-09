@@ -13,7 +13,7 @@ import (
 
 // GameenginServer creates new instance of gRPC server
 type GameenginServer struct {
-	pb.UnimplementedGameenginServer
+	pb.UnimplementedGameengineServer
 	srv     *grpc.Server
 	address string
 }
@@ -26,11 +26,11 @@ func NewServer(address string) *GameenginServer {
 }
 
 // SetScore saves the last score
-func (g *GameenginServer) SetScore(ctx context.Context, input *pb.SetSizeRequest) (*pb.SetSizeResponse, error) {
+func (g *GameenginServer) SetScore(ctx context.Context, input *pb.SetScoreRequest) (*pb.SetScoreResponse, error) {
 	log.Info().Msg("GetSize in gameengine called")
 	set := logic.SetScore(input.Score)
-	return &pb.SetSizeResponse{
-		set: set,
+	return &pb.SetScoreResponse{
+		Set: set,
 	}, nil
 }
 
@@ -38,7 +38,7 @@ func (g *GameenginServer) SetScore(ctx context.Context, input *pb.SetSizeRequest
 func (g *GameenginServer) GetSize(ctx context.Context, input *pb.GetSizeRequest) (*pb.GetSizeResponse, error) {
 	log.Info().Msg("GetSize in gameengine called")
 	size := logic.GetSize()
-	return *pb.GetSizeResponse{
+	return &pb.GetSizeResponse{
 		Size: size,
 	}, nil
 }
@@ -54,7 +54,7 @@ func (g *GameenginServer) ListenAndServe() error {
 
 	g.srv = grpc.NewServer(serverOpts...)
 
-	pb.RegisterGameenginServer(g.srv, g)
+	pb.RegisterGameengineServer(g.srv, g)
 
 	log.Info().Str("address", g.address).Msg("starting gRPC server for gameengine microservice")
 
