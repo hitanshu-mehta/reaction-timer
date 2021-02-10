@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/highscore/v1"
+	pb "github.com/hitanshu-mehta/reaction-timer/services/highscore/pb/v1"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"

@@ -6,8 +6,9 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"github.com/gin-gonic/gin"
-	pbgameengine "github.com/hitanshu-mehta/reaction-timer/api/proto/gameengine/v1"
-	pbhighscore "github.com/hitanshu-mehta/reaction-timer/api/proto/highscore/v1"
+	pbgameengine "github.com/hitanshu-mehta/reaction-timer/services/gameengine/pb/v1"
+	pbhighscore "github.com/hitanshu-mehta/reaction-timer/services/highscore/pb/v1"
+
 	"google.golang.org/grpc"
 )
 

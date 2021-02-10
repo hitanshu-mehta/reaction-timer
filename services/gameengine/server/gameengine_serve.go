@@ -4,8 +4,8 @@ import (
 	"context"
 	"net"
 
-	logic "github.com/hitanshu-mehta/reaction-timer/api/proto/gameengine/logic"
-	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/gameengine/v1"
+	logic "github.com/hitanshu-mehta/reaction-timer/services/gameengine/logic"
+	pb "github.com/hitanshu-mehta/reaction-timer/services/gameengine/pb/v1"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"

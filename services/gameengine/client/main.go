@@ -9,7 +9,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	pb "github.com/hitanshu-mehta/reaction-timer/api/proto/gameengine/v1"
+	pb "github.com/hitanshu-mehta/reaction-timer/services/gameengine/pb/v1"
 	"google.golang.org/grpc"
 )
 
