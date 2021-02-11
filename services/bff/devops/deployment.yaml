@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-deployment
+  labels:
+    app: bff-deployment
+spec:
+  minReadySeconds: 1
+  selector:
+    matchLabels:
+      app: bff-deployment
+  replicas: 1
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: bff-deployment
+    spec:
+      containers:
+        - name: bff-deployment
+          image: hitanshu/bff
+          command: ["/app/bff"]
+          args:
+            - --address-highscore=highscore-service:50051
+            - --address-gameengine=gameengine-service:60051

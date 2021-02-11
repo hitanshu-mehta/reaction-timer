@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: highscore-sevice
+spec:
+  type: ClusterIP
+  selector:
+    app: highscore-sevice
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: 50051
+      protocol: TCP
