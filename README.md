@@ -8,3 +8,20 @@ This game will show circle and square of different sizes and user have to click 
 
 ## Architecture
 ![](assets/architecture.png)
+
+### BFF (backend for frontend): 
+
+Receives request from the ui and route to respective microservice.
+
+### highscore:
+
+Set and get highscore.
+
+### gameenigne:
+
+Set the current score of the user and returns size of the shape according to the performation.
+If user is performing well then size will be smaller and vice versa.
+
+## Future Plan:
+
+Integrate Thanos to have a global view.
